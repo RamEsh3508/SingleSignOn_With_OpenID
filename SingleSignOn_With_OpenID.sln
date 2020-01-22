@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleSignOn_With_OpenID", "SingleSignOn_With_OpenID\SingleSignOn_With_OpenID.csproj", "{112E65FD-F0D0-4896-B2C3-5C41B0A23DF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{112E65FD-F0D0-4896-B2C3-5C41B0A23DF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{112E65FD-F0D0-4896-B2C3-5C41B0A23DF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{112E65FD-F0D0-4896-B2C3-5C41B0A23DF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{112E65FD-F0D0-4896-B2C3-5C41B0A23DF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FCF8548-DE2A-482E-BCC2-D332DCB00A5F}
+	EndGlobalSection
+EndGlobal
