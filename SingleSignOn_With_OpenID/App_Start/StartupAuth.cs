@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.Owin.Extensions;
 using Microsoft.Owin.Security;
@@ -39,11 +38,11 @@ namespace SingleSignOn_With_OpenID
 				                                   Scope = "openid",
 				                                   //ResponseType = "id_token",
 				                                   RedirectUri = strRedirectUri,
-												   //MetadataAddress = "https://login.microsoftonline.com/8b67b292-ebf3-4d29-89a6-47f7971c2e16/v2.0/.well-known/openid-configuration",
-												   Notifications = new OpenIdConnectAuthenticationNotifications
+
+				                                   Notifications = new OpenIdConnectAuthenticationNotifications
 				                                                   {
-																	   SecurityTokenReceived = OnSecurityTokenReceived,
-																	   AuthorizationCodeReceived = OnAuthorizationCodeReceived,
+					                                                   SecurityTokenReceived = OnSecurityTokenReceived,
+					                                                   AuthorizationCodeReceived = OnAuthorizationCodeReceived,
 					                                                   AuthenticationFailed = OnAuthenticationFailed
 				                                                   }
 			                                   }
@@ -52,13 +51,12 @@ namespace SingleSignOn_With_OpenID
 		}
 		#endregion
 
-		#region Private
+		#region Privates
 		private Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotification arg)
 		{
-			AuthenticationTicket authTicket = arg.AuthenticationTicket;
-
 			return Task.FromResult(0);
 		}
+
 		private Task OnAuthenticationFailed(AuthenticationFailedNotification<OpenIdConnectMessage, OpenIdConnectAuthenticationOptions> notification)
 		{
 			return Task.FromResult(0);
