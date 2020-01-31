@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Owin.Extensions;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -20,6 +22,7 @@ namespace SingleSignOn_With_OpenID
 
 		#region Fields
 		private readonly string strAuthority = strInstance + strTenantId;
+		private ISecurityTokenValidator _tokenValidator;
 		#endregion
 
 		#region Publics
@@ -36,12 +39,16 @@ namespace SingleSignOn_With_OpenID
 				                                   Authority = strAuthority,
 				                                   PostLogoutRedirectUri = strRedirectUri,
 				                                   Scope = "openid",
-				                                   //ResponseType = "id_token",
 				                                   RedirectUri = strRedirectUri,
+
+				                                   TokenValidationParameters = new TokenValidationParameters
+				                                                               {
+					                                                               ValidateIssuer = true,
+					                                                               IssuerValidator = (issuer, token, tvp) => { return issuer; }
+				                                                               },
 
 				                                   Notifications = new OpenIdConnectAuthenticationNotifications
 				                                                   {
-					                                                   SecurityTokenReceived = OnSecurityTokenReceived,
 					                                                   AuthorizationCodeReceived = OnAuthorizationCodeReceived,
 					                                                   AuthenticationFailed = OnAuthenticationFailed
 				                                                   }
@@ -54,15 +61,17 @@ namespace SingleSignOn_With_OpenID
 		#region Privates
 		private Task OnAuthorizationCodeReceived(AuthorizationCodeReceivedNotification arg)
 		{
+			string strEmail = arg.JwtSecurityToken.Claims.First(claim => claim.Type == "upn").Value;
+			string strName = arg.JwtSecurityToken.Claims.First(claim => claim.Type == "name").Value;
+
+			if(strEmail == "pradeep@msazure01.onmicrosoft.com")
+			{
+			}
+
 			return Task.FromResult(0);
 		}
 
 		private Task OnAuthenticationFailed(AuthenticationFailedNotification<OpenIdConnectMessage, OpenIdConnectAuthenticationOptions> notification)
-		{
-			return Task.FromResult(0);
-		}
-
-		private Task OnSecurityTokenReceived(SecurityTokenReceivedNotification<OpenIdConnectMessage, OpenIdConnectAuthenticationOptions> arg)
 		{
 			return Task.FromResult(0);
 		}
